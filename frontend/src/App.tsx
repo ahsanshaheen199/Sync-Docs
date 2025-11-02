@@ -1,9 +1,25 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Home } from "@/pages/home";
+import { Documents } from "@/pages/documents";
+import { Document } from "@/pages/document";
+
 function App() {
-  return (
-    <div className="flex items-center justify-center h-screen">
-      <h1 className="text-4xl font-bold">Hello World</h1>
-    </div>
-  );
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Home />,
+    },
+    {
+      path: "/documents",
+      element: <Documents />,
+    },
+    {
+      path: "/documents/:id",
+      element: <Document />,
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
 }
 
 export default App;
