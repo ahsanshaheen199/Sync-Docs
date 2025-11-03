@@ -4,6 +4,7 @@ import { StarterKit } from "@tiptap/starter-kit";
 import { TaskList } from "@tiptap/extension-list";
 import { TaskItem } from "@tiptap/extension-list";
 import { TableKit } from "@tiptap/extension-table";
+import { TextStyle, FontFamily } from "@tiptap/extension-text-style";
 
 export function EditorContextProvider({
   children,
@@ -20,6 +21,8 @@ export function EditorContextProvider({
       TableKit.configure({
         table: { resizable: true },
       }),
+      TextStyle,
+      FontFamily,
     ],
     content: `
             <table>
