@@ -14,6 +14,7 @@ import {
 import { ToolbarButton } from "./toolbar-button";
 import { useCurrentEditor, useEditorState } from "@tiptap/react";
 import { Separator } from "../ui/separator";
+import { FontFamilyToolbarButton } from "./font-family-toolbar-button";
 
 export function Toolbar() {
   const { editor } = useCurrentEditor();
@@ -142,6 +143,8 @@ export function Toolbar() {
       {sections[0].map((section, index) => (
         <ToolbarButton key={index} {...section} />
       ))}
+      <Separator orientation="vertical" className="h-6!" />
+      <FontFamilyToolbarButton />
       <Separator orientation="vertical" className="h-6!" />
       {sections[1].map((section, index) => (
         <ToolbarButton key={index} {...section} />
