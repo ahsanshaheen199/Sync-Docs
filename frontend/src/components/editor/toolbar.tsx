@@ -21,6 +21,7 @@ import { HighlightToolbarButton } from "./highlight-button";
 import { TextColorToolbarButton } from "./text-color-button";
 import { LinkToolbarButton } from "./link-button";
 import { ImageToolbarButton } from "./image-button";
+import { AlignToolbarButton } from "./align-button";
 
 export function Toolbar() {
   const { editor } = useCurrentEditor();
@@ -53,6 +54,10 @@ export function Toolbar() {
         textColor: ctx.editor?.getAttributes("textStyle").color ?? "#000000",
         highlightColor:
           ctx.editor?.getAttributes("highlight").color ?? "#ffffff",
+        currentAlignment:
+          ["left", "center", "right", "justify"].find((alignment) =>
+            ctx.editor?.isActive({ textAlign: alignment })
+          ) ?? "left",
       };
     },
   });
@@ -166,6 +171,9 @@ export function Toolbar() {
       <Separator orientation="vertical" className="h-6!" />
       <LinkToolbarButton />
       <ImageToolbarButton />
+      <AlignToolbarButton
+        alignValue={editorState?.currentAlignment as string}
+      />
       {sections[2].map((section, index) => (
         <ToolbarButton key={index} {...section} />
       ))}

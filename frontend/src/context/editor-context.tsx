@@ -8,6 +8,7 @@ import { TextStyle, FontFamily, Color } from "@tiptap/extension-text-style";
 import { Highlight } from "@tiptap/extension-highlight";
 import Link from "@tiptap/extension-link";
 import Image from "@tiptap/extension-image";
+import TextAlign from "@tiptap/extension-text-align";
 
 export function EditorContextProvider({
   children,
@@ -44,6 +45,9 @@ export function EditorContextProvider({
           minHeight: 50,
           alwaysPreserveAspectRatio: true,
         },
+      }),
+      TextAlign.configure({
+        types: ["heading", "paragraph"],
       }),
     ],
     content: `
