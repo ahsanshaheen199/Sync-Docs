@@ -17,6 +17,8 @@ import { Separator } from "../ui/separator";
 import { FontFamilyToolbarButton } from "./font-family-toolbar-button";
 import { HeadingToolbarButton } from "./heading-toolbar-button";
 import type { HeadingValue } from "@/types";
+import { HighlightToolbarButton } from "./highlight-toolbar-button";
+import { TextColorToolbarButton } from "./text-color-toolbar-button";
 
 export function Toolbar() {
   const { editor } = useCurrentEditor();
@@ -46,6 +48,9 @@ export function Toolbar() {
         fontFamily:
           ctx.editor?.getAttributes("textStyle").fontFamily ?? "Arial",
         heading: ctx.editor?.getAttributes("heading")?.level ?? 0,
+        textColor: ctx.editor?.getAttributes("textStyle").color ?? "#000000",
+        highlightColor:
+          ctx.editor?.getAttributes("highlight").color ?? "#ffffff",
       };
     },
   });
@@ -152,6 +157,10 @@ export function Toolbar() {
       {sections[1].map((section, index) => (
         <ToolbarButton key={index} {...section} />
       ))}
+      <TextColorToolbarButton textColor={editorState?.textColor ?? "#000000"} />
+      <HighlightToolbarButton
+        highlightColor={editorState?.highlightColor ?? "#ffffff"}
+      />
       <Separator orientation="vertical" className="h-6!" />
       {sections[2].map((section, index) => (
         <ToolbarButton key={index} {...section} />

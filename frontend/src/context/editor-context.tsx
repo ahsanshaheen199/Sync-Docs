@@ -4,7 +4,8 @@ import { StarterKit } from "@tiptap/starter-kit";
 import { TaskList } from "@tiptap/extension-list";
 import { TaskItem } from "@tiptap/extension-list";
 import { TableKit } from "@tiptap/extension-table";
-import { TextStyle, FontFamily } from "@tiptap/extension-text-style";
+import { TextStyle, FontFamily, Color } from "@tiptap/extension-text-style";
+import { Highlight } from "@tiptap/extension-highlight";
 
 export function EditorContextProvider({
   children,
@@ -23,6 +24,10 @@ export function EditorContextProvider({
       }),
       TextStyle,
       FontFamily,
+      Highlight.configure({
+        multicolor: true,
+      }),
+      Color,
     ],
     content: `
             <table>
