@@ -14,11 +14,12 @@ import {
 import { ToolbarButton } from "./toolbar-button";
 import { useCurrentEditor, useEditorState } from "@tiptap/react";
 import { Separator } from "../ui/separator";
-import { FontFamilyToolbarButton } from "./font-family-toolbar-button";
-import { HeadingToolbarButton } from "./heading-toolbar-button";
+import { FontFamilyToolbarButton } from "./font-family-button";
+import { HeadingToolbarButton } from "./heading-button";
 import type { HeadingValue } from "@/types";
-import { HighlightToolbarButton } from "./highlight-toolbar-button";
-import { TextColorToolbarButton } from "./text-color-toolbar-button";
+import { HighlightToolbarButton } from "./highlight-button";
+import { TextColorToolbarButton } from "./text-color-button";
+import { LinkToolbarButton } from "./link-button";
 
 export function Toolbar() {
   const { editor } = useCurrentEditor();
@@ -161,6 +162,8 @@ export function Toolbar() {
       <HighlightToolbarButton
         highlightColor={editorState?.highlightColor ?? "#ffffff"}
       />
+      <Separator orientation="vertical" className="h-6!" />
+      <LinkToolbarButton />
       <Separator orientation="vertical" className="h-6!" />
       {sections[2].map((section, index) => (
         <ToolbarButton key={index} {...section} />

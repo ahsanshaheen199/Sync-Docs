@@ -6,6 +6,7 @@ import { TaskItem } from "@tiptap/extension-list";
 import { TableKit } from "@tiptap/extension-table";
 import { TextStyle, FontFamily, Color } from "@tiptap/extension-text-style";
 import { Highlight } from "@tiptap/extension-highlight";
+import Link from "@tiptap/extension-link";
 
 export function EditorContextProvider({
   children,
@@ -28,6 +29,10 @@ export function EditorContextProvider({
         multicolor: true,
       }),
       Color,
+      Link.configure({
+        openOnClick: false,
+        defaultProtocol: "https",
+      }),
     ],
     content: `
             <table>
