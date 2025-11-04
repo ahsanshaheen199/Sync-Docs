@@ -15,6 +15,8 @@ import { ToolbarButton } from "./toolbar-button";
 import { useCurrentEditor, useEditorState } from "@tiptap/react";
 import { Separator } from "../ui/separator";
 import { FontFamilyToolbarButton } from "./font-family-toolbar-button";
+import { HeadingToolbarButton } from "./heading-toolbar-button";
+import type { HeadingValue } from "@/types";
 
 export function Toolbar() {
   const { editor } = useCurrentEditor();
@@ -33,12 +35,6 @@ export function Toolbar() {
         canCode: ctx.editor?.can().chain().toggleCode().run() ?? false,
         canClearMarks: ctx.editor?.can().chain().unsetAllMarks().run() ?? false,
         isParagraph: ctx.editor?.isActive("paragraph") ?? false,
-        isHeading1: ctx.editor?.isActive("heading", { level: 1 }) ?? false,
-        isHeading2: ctx.editor?.isActive("heading", { level: 2 }) ?? false,
-        isHeading3: ctx.editor?.isActive("heading", { level: 3 }) ?? false,
-        isHeading4: ctx.editor?.isActive("heading", { level: 4 }) ?? false,
-        isHeading5: ctx.editor?.isActive("heading", { level: 5 }) ?? false,
-        isHeading6: ctx.editor?.isActive("heading", { level: 6 }) ?? false,
         isBulletList: ctx.editor?.isActive("bulletList") ?? false,
         isOrderedList: ctx.editor?.isActive("orderedList") ?? false,
         isCodeBlock: ctx.editor?.isActive("codeBlock") ?? false,
@@ -47,6 +43,9 @@ export function Toolbar() {
         canRedo: ctx.editor?.can().chain().redo().run() ?? false,
         isUnderline: ctx.editor?.isActive("underline") ?? false,
         isTaskList: ctx.editor?.isActive("taskList") ?? false,
+        fontFamily:
+          ctx.editor?.getAttributes("textStyle").fontFamily ?? "Arial",
+        heading: ctx.editor?.getAttributes("heading")?.level ?? 0,
       };
     },
   });
@@ -144,7 +143,11 @@ export function Toolbar() {
         <ToolbarButton key={index} {...section} />
       ))}
       <Separator orientation="vertical" className="h-6!" />
-      <FontFamilyToolbarButton />
+      <FontFamilyToolbarButton fontFamily={editorState?.fontFamily} />
+      <Separator orientation="vertical" className="h-6!" />
+      <HeadingToolbarButton
+        headingValue={editorState?.heading as HeadingValue}
+      />
       <Separator orientation="vertical" className="h-6!" />
       {sections[1].map((section, index) => (
         <ToolbarButton key={index} {...section} />
