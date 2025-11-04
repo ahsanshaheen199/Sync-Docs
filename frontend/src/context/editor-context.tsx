@@ -7,6 +7,7 @@ import { TableKit } from "@tiptap/extension-table";
 import { TextStyle, FontFamily, Color } from "@tiptap/extension-text-style";
 import { Highlight } from "@tiptap/extension-highlight";
 import Link from "@tiptap/extension-link";
+import Image from "@tiptap/extension-image";
 
 export function EditorContextProvider({
   children,
@@ -32,6 +33,17 @@ export function EditorContextProvider({
       Link.configure({
         openOnClick: false,
         defaultProtocol: "https",
+      }),
+      Image.configure({
+        inline: true,
+        allowBase64: true,
+        resize: {
+          enabled: true,
+          directions: ["top", "bottom", "left", "right"],
+          minWidth: 50,
+          minHeight: 50,
+          alwaysPreserveAspectRatio: true,
+        },
       }),
     ],
     content: `

@@ -20,6 +20,7 @@ import type { HeadingValue } from "@/types";
 import { HighlightToolbarButton } from "./highlight-button";
 import { TextColorToolbarButton } from "./text-color-button";
 import { LinkToolbarButton } from "./link-button";
+import { ImageToolbarButton } from "./image-button";
 
 export function Toolbar() {
   const { editor } = useCurrentEditor();
@@ -164,7 +165,7 @@ export function Toolbar() {
       />
       <Separator orientation="vertical" className="h-6!" />
       <LinkToolbarButton />
-      <Separator orientation="vertical" className="h-6!" />
+      <ImageToolbarButton />
       {sections[2].map((section, index) => (
         <ToolbarButton key={index} {...section} />
       ))}
