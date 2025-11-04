@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useCurrentEditor } from "@tiptap/react";
+import { useCurrentEditor, useEditorState } from "@tiptap/react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,13 +9,17 @@ import { ChevronDownIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { type HeadingValue } from "@/types";
 
-export function HeadingToolbarButton({
-  headingValue,
-}: {
-  headingValue?: HeadingValue;
-}) {
+export function HeadingToolbarButton() {
   const [isOpen, setIsOpen] = useState(false);
   const { editor } = useCurrentEditor();
+  const editorState = useEditorState({
+    editor,
+    selector: (ctx) => {
+      return {
+        headingValue: ctx.editor?.getAttributes("heading").level ?? 0,
+      };
+    },
+  });
   const headings = [
     {
       label: "Heading 1",
@@ -58,8 +62,9 @@ export function HeadingToolbarButton({
       <DropdownMenuTrigger asChild>
         <button className="h-7 min-w-7 shrink-0 flex items-center justify-center rounded-sm hover:bg-neutral-200/80 text-sm overflow-hidden px-1.5">
           <span className="truncate">
-            {headingValue
-              ? headings.find((h) => h.value === headingValue)?.label
+            {editorState?.headingValue
+              ? headings.find((h) => h.value === editorState?.headingValue)
+                  ?.label
               : "Normal Text"}
           </span>
           <ChevronDownIcon className="size-4 shrink-0 ml-2" />
@@ -71,7 +76,7 @@ export function HeadingToolbarButton({
             key={heading.value}
             className={cn(
               "flex items-center px-2 py-1 gap-x-2 rounded-sm text-sm hover:bg-neutral-200/80",
-              heading.value === headingValue && "bg-neutral-200/80"
+              heading.value === editorState?.headingValue && "bg-neutral-200/80"
             )}
             style={{ fontSize: heading.fontSize }}
             onClick={() => {

@@ -16,13 +16,14 @@ import { useCurrentEditor, useEditorState } from "@tiptap/react";
 import { Separator } from "../ui/separator";
 import { FontFamilyToolbarButton } from "./font-family-button";
 import { HeadingToolbarButton } from "./heading-button";
-import type { HeadingValue } from "@/types";
 import { HighlightToolbarButton } from "./highlight-button";
 import { TextColorToolbarButton } from "./text-color-button";
 import { LinkToolbarButton } from "./link-button";
 import { ImageToolbarButton } from "./image-button";
 import { AlignToolbarButton } from "./align-button";
 import { ListToolbarButton } from "./list-button";
+import { FontSizeToolbarButton } from "./font-size-button";
+import { LineHeightToolbarButton } from "./line-height-button";
 
 export function Toolbar() {
   const { editor } = useCurrentEditor();
@@ -45,16 +46,8 @@ export function Toolbar() {
         isOrderedList: ctx.editor?.isActive("orderedList") ?? false,
         isCodeBlock: ctx.editor?.isActive("codeBlock") ?? false,
         isBlockquote: ctx.editor?.isActive("blockquote") ?? false,
-        canUndo: ctx.editor?.can().chain().undo().run() ?? false,
-        canRedo: ctx.editor?.can().chain().redo().run() ?? false,
         isUnderline: ctx.editor?.isActive("underline") ?? false,
         isTaskList: ctx.editor?.isActive("taskList") ?? false,
-        fontFamily:
-          ctx.editor?.getAttributes("textStyle").fontFamily ?? "Arial",
-        heading: ctx.editor?.getAttributes("heading")?.level ?? 0,
-        textColor: ctx.editor?.getAttributes("textStyle").color ?? "#000000",
-        highlightColor:
-          ctx.editor?.getAttributes("highlight").color ?? "#ffffff",
       };
     },
   });
@@ -147,29 +140,28 @@ export function Toolbar() {
   ];
 
   return (
-    <div className="px-2.5 py-0.5 bg-[#F0F4F9] rounded-3xl min-h-10 flex items-center gap-x-0.5 overflow-x-auto">
+    <div className="px-2.5 py-0.5 bg-[#F0F4F9] rounded-3xl min-h-10 flex items-center gap-x-0.5 overflow-x-auto print:hidden">
       {sections[0].map((section, index) => (
         <ToolbarButton key={index} {...section} />
       ))}
       <Separator orientation="vertical" className="h-6!" />
-      <FontFamilyToolbarButton fontFamily={editorState?.fontFamily} />
+      <FontFamilyToolbarButton />
       <Separator orientation="vertical" className="h-6!" />
-      <HeadingToolbarButton
-        headingValue={editorState?.heading as HeadingValue}
-      />
+      <HeadingToolbarButton />
+      <Separator orientation="vertical" className="h-6!" />
+      <FontSizeToolbarButton />
       <Separator orientation="vertical" className="h-6!" />
       {sections[1].map((section, index) => (
         <ToolbarButton key={index} {...section} />
       ))}
-      <TextColorToolbarButton textColor={editorState?.textColor ?? "#000000"} />
-      <HighlightToolbarButton
-        highlightColor={editorState?.highlightColor ?? "#ffffff"}
-      />
+      <TextColorToolbarButton />
+      <HighlightToolbarButton />
       <Separator orientation="vertical" className="h-6!" />
       <LinkToolbarButton />
       <ImageToolbarButton />
       <Separator orientation="vertical" className="h-6!" />
       <AlignToolbarButton />
+      <LineHeightToolbarButton />
       <ListToolbarButton />
       {sections[2].map((section, index) => (
         <ToolbarButton key={index} {...section} />

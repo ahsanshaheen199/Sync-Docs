@@ -4,10 +4,18 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { SketchPicker } from "react-color";
-import { useCurrentEditor } from "@tiptap/react";
+import { useCurrentEditor, useEditorState } from "@tiptap/react";
 
-export function TextColorToolbarButton({ textColor }: { textColor: string }) {
+export function TextColorToolbarButton() {
   const { editor } = useCurrentEditor();
+  const editorState = useEditorState({
+    editor,
+    selector: (ctx) => {
+      return {
+        textColor: ctx.editor?.getAttributes("textStyle").color ?? "#000000",
+      };
+    },
+  });
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -30,13 +38,13 @@ export function TextColorToolbarButton({ textColor }: { textColor: string }) {
           </svg>
           <div
             className="w-3/5 mx-auto h-0.5"
-            style={{ backgroundColor: textColor }}
+            style={{ backgroundColor: editorState?.textColor ?? "#000000" }}
           ></div>
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="p-0 shadow-none">
         <SketchPicker
-          color={textColor}
+          color={editorState?.textColor ?? "#000000"}
           onChange={(color) => {
             editor?.chain().focus().setColor(color.hex).run();
           }}

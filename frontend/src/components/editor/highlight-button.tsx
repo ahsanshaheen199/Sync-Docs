@@ -3,16 +3,21 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { useCurrentEditor } from "@tiptap/react";
+import { useCurrentEditor, useEditorState } from "@tiptap/react";
 import { HighlighterIcon } from "lucide-react";
 import { SketchPicker } from "react-color";
 
-export function HighlightToolbarButton({
-  highlightColor,
-}: {
-  highlightColor: string;
-}) {
+export function HighlightToolbarButton() {
   const { editor } = useCurrentEditor();
+  const editorState = useEditorState({
+    editor,
+    selector: (ctx) => {
+      return {
+        highlightColor:
+          ctx.editor?.getAttributes("highlight").color ?? "#ffffff",
+      };
+    },
+  });
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -20,13 +25,15 @@ export function HighlightToolbarButton({
           <HighlighterIcon className="size-4" />
           <div
             className="w-3/5 mx-auto h-0.5"
-            style={{ backgroundColor: highlightColor }}
+            style={{
+              backgroundColor: editorState?.highlightColor ?? "#ffffff",
+            }}
           ></div>
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="p-0 shadow-none">
         <SketchPicker
-          color={highlightColor}
+          color={editorState?.highlightColor ?? "#ffffff"}
           onChange={(color) => {
             editor?.chain().focus().setHighlight({ color: color.hex }).run();
           }}

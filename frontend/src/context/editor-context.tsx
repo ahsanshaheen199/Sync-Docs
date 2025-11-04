@@ -4,7 +4,13 @@ import { StarterKit } from "@tiptap/starter-kit";
 import { TaskList } from "@tiptap/extension-list";
 import { TaskItem } from "@tiptap/extension-list";
 import { TableKit } from "@tiptap/extension-table";
-import { TextStyle, FontFamily, Color } from "@tiptap/extension-text-style";
+import {
+  TextStyle,
+  FontFamily,
+  Color,
+  FontSize,
+  LineHeight,
+} from "@tiptap/extension-text-style";
 import { Highlight } from "@tiptap/extension-highlight";
 import Link from "@tiptap/extension-link";
 import Image from "@tiptap/extension-image";
@@ -49,6 +55,8 @@ export function EditorContextProvider({
       TextAlign.configure({
         types: ["heading", "paragraph"],
       }),
+      FontSize,
+      LineHeight,
     ],
     content: `
             <table>
