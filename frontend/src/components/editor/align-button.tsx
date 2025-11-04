@@ -9,11 +9,22 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { useCurrentEditor } from "@tiptap/react";
+import { useCurrentEditor, useEditorState } from "@tiptap/react";
 import { cn } from "@/lib/utils";
 
-export function AlignToolbarButton({ alignValue }: { alignValue: string }) {
+export function AlignToolbarButton() {
   const { editor } = useCurrentEditor();
+  const editorState = useEditorState({
+    editor,
+    selector: (ctx) => {
+      return {
+        currentAlignment:
+          ["left", "center", "right", "justify"].find((alignment) =>
+            ctx.editor?.isActive({ textAlign: alignment })
+          ) ?? "left",
+      };
+    },
+  });
 
   const alignments = [
     {
@@ -54,7 +65,7 @@ export function AlignToolbarButton({ alignValue }: { alignValue: string }) {
           <button
             className={cn(
               "flex items-center px-2 py-1 gap-x-2 rounded-sm text-sm hover:bg-neutral-200/80",
-              alignValue === value && "bg-neutral-200/80"
+              editorState?.currentAlignment === value && "bg-neutral-200/80"
             )}
             key={value}
             onClick={() => handleAlignment(value)}
