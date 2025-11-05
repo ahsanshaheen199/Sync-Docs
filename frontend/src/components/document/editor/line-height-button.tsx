@@ -3,7 +3,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
+} from "../../ui/dropdown-menu";
 import { useCurrentEditor, useEditorState } from "@tiptap/react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";

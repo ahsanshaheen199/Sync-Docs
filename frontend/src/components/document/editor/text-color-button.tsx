@@ -2,7 +2,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
+} from "../../ui/dropdown-menu";
 import { SketchPicker } from "react-color";
 import { useCurrentEditor, useEditorState } from "@tiptap/react";
 

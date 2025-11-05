@@ -4,7 +4,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
+} from "../../ui/dropdown-menu";
 import { ChevronDownIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { type HeadingValue } from "@/types";

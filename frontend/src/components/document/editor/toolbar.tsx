@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { ToolbarButton } from "./toolbar-button";
 import { useCurrentEditor, useEditorState } from "@tiptap/react";
-import { Separator } from "../ui/separator";
+import { Separator } from "../../ui/separator";
 import { FontFamilyToolbarButton } from "./font-family-button";
 import { HeadingToolbarButton } from "./heading-button";
 import { HighlightToolbarButton } from "./highlight-button";

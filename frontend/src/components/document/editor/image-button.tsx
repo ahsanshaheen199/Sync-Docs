@@ -5,17 +5,17 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-} from "../ui/dropdown-menu";
-import { DropdownMenuTrigger } from "../ui/dropdown-menu";
+} from "../../ui/dropdown-menu";
+import { DropdownMenuTrigger } from "../../ui/dropdown-menu";
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "../ui/dialog";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+} from "../../ui/dialog";
+import { Input } from "../../ui/input";
+import { Button } from "../../ui/button";
 
 export function ImageToolbarButton() {
   const { editor } = useCurrentEditor();

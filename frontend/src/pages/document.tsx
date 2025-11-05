@@ -1,7 +1,7 @@
-import { Editor } from "@/components/editor";
-import { Toolbar } from "@/components/editor/toolbar";
+import { Editor } from "@/components/document/editor";
+import { Toolbar } from "@/components/document/editor/toolbar";
 import { EditorContextProvider } from "@/context/editor-context";
-import { Navbar } from "@/components/navbar";
+import { Navbar } from "@/components/document/navbar";
 
 export function Document() {
   return (
