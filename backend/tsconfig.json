@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+      "allowJs": true,
+      "allowSyntheticDefaultImports": true,
+      "baseUrl": "./src",
+      "declaration": true,
+      "emitDecoratorMetadata": true,
+      "esModuleInterop": true,
+      "experimentalDecorators": true,
+      "forceConsistentCasingInFileNames": true,
+      "importHelpers": true,
+      "lib": ["es2017", "esnext.asynciterable"],
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "noEmit": false,
+      "outDir": "./dist",
+      "pretty": true,
+      "resolveJsonModule": true,
+      "rootDir": "./src",
+      "sourceMap": true,
+      "target": "es2017",
+      "typeRoots": ["./src/types", "node_modules/@types"],
+      "paths": {
+        "@/*": ["./*"]
+      },
+      "rootDirs": ["./src"]
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist"]
+  }
