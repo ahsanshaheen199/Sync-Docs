@@ -35,10 +35,6 @@ export const Signup = () => {
 			const response = await apiFetch('/api/auth/register', {
 				method: 'POST',
 				body: JSON.stringify({ firstName, lastName, email, password }),
-				headers: {
-					'Content-Type': 'application/json',
-					Accept: 'application/json',
-				},
 			});
 			login(response.data.user);
 			navigate('/');

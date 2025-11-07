@@ -33,10 +33,6 @@ export const Login = () => {
 			const response = await apiFetch('/api/auth/login', {
 				method: 'POST',
 				body: JSON.stringify({ email, password }),
-				headers: {
-					'Content-Type': 'application/json',
-					Accept: 'application/json',
-				},
 			});
 			login(response.data.user);
 			navigate('/');
