@@ -17,6 +17,20 @@ function App() {
       path: "/documents/:id",
       element: <Document />,
     },
+    {
+      path: "/login",
+      async lazy() {
+        const { Login } = await import("@/pages/login");
+        return { Component: Login };
+      },
+    },
+    {
+      path: "/signup",
+      async lazy() {
+        const { Signup } = await import("@/pages/signup");
+        return { Component: Signup };
+      },
+    },
   ]);
 
   return <RouterProvider router={router} />;
