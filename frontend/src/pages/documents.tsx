@@ -1,3 +1,3 @@
 export function Documents() {
-  return <div>Documents</div>;
+	return <div>Documents</div>;
 }
