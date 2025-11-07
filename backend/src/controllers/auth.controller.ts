@@ -36,7 +36,10 @@ export class AuthController {
 		return res.json({
 			message: 'User registered successfully',
 			data: {
-				user,
+				user: {
+					...user,
+					password: undefined,
+				},
 			},
 		});
 	}
@@ -55,7 +58,10 @@ export class AuthController {
 		return res.json({
 			message: 'Logged in successfully',
 			data: {
-				user,
+				user: {
+					...user,
+					password: undefined,
+				},
 			},
 		});
 	}
